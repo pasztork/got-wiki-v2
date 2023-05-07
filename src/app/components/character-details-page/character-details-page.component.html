@@ -1,0 +1,149 @@
+<div *ngIf="character">
+    <div class="mat-headline-5">
+        {{character.name || 'Anonymous'}}
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-list class="text-center">
+        <mat-list-item *ngIf="character.gender">
+            <span matListItemTitle>Gender</span>
+            <span matListItemLine>{{character.gender}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="character.culture">
+            <span matListItemTitle>Culture</span>
+            <span matListItemLine>{{character.culture}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="character.born">
+            <span matListItemTitle>Year of Birth</span>
+            <span matListItemLine>{{character.born}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="character.died">
+            <span matListItemTitle>Year of Death</span>
+            <span matListItemLine>{{character.died}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="character.aliases[0]">
+            <span matListItemTitle>Aliases</span>
+            <span matListItemLine *ngFor="let alias of character.aliases">
+                <span>{{alias}}</span>
+            </span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="character.tvSeries[0]">
+            <span matListItemTitle>TV Series</span>
+            <span matListItemLine *ngFor="let series of character.tvSeries">
+                <span>{{series}}</span>
+            </span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="character.playedBy[0]">
+            <span matListItemTitle>Played By</span>
+            <span matListItemLine *ngFor="let actor of character.playedBy">
+                <span>{{actor}}</span>
+            </span>
+        </mat-list-item>
+    </mat-list>
+
+    <div *ngIf="father || mother || spouse">
+        <mat-divider></mat-divider>
+
+        <div *ngIf="father">
+            <div class=" mat-headline-6">
+                <span class="title">Father</span>
+            </div>
+            <mat-action-list class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(father)"
+                    routerLink="../character-details">
+                    {{father.name || 'Anonymous'}}
+                </a>
+            </mat-action-list>
+        </div>
+
+        <div *ngIf="mother">
+            <div class=" mat-headline-6">
+                <span class="title">Mother</span>
+            </div>
+            <mat-action-list class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(mother)"
+                    routerLink="../character-details">
+                    {{mother.name || 'Anonymous'}}
+                </a>
+            </mat-action-list>
+        </div>
+
+        <div *ngIf="spouse">
+            <div class=" mat-headline-6">
+                <span class="title">Spouse</span>
+            </div>
+            <mat-action-list class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(spouse)"
+                    routerLink="../character-details">
+                    {{spouse.name || 'Anonymous'}}
+                </a>
+            </mat-action-list>
+        </div>
+    </div>
+
+    <div *ngIf="character.allegiances[0]">
+        <mat-divider></mat-divider>
+
+        <div>
+            <div class=" mat-headline-6">
+                <span class="title">Allegiance</span>
+            </div>
+            <mat-action-list *ngFor="let house of allegiances" class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedHouse(house)" routerLink="../house-details">
+                    {{house.name}}
+                </a>
+            </mat-action-list>
+        </div>
+    </div>
+
+    <div *ngIf="character.books[0] || character.povBooks[0]">
+        <mat-divider></mat-divider>
+
+        <div class="lists-container">
+            <div *ngIf="booksOnCurrentPage[0]">
+                <div class="mat-headline-6">
+                    <button mat-mini-fab color="primary" (click)="getPreviousBookPage()" [disabled]="bookPage === 0">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <span class="title">Books</span>
+                    <button mat-mini-fab color="primary" (click)="getNextBookPage()"
+                        [disabled]="isLastPage(bookPage, booksOnCurrentPage.length, character.books.length)">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </div>
+                <mat-action-list *ngFor="let book of booksOnCurrentPage" class="list-container">
+                    <a mat-list-item class="text-center" (click)="setSelectedBook(book)" routerLink="../book-details">
+                        {{book.name}}
+                    </a>
+                </mat-action-list>
+            </div>
+
+            <div *ngIf="povBooksOnCurrentPage[0]">
+                <div class=" mat-headline-6">
+                    <button mat-mini-fab color="primary" (click)="getPreviousPovBookPage()"
+                        [disabled]="povBookPage === 0">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <span class="title">POV Books</span>
+                    <button mat-mini-fab color="primary" (click)="getNextPovBookPage()"
+                        [disabled]="isLastPage(povBookPage, povBooksOnCurrentPage.length, character.povBooks.length)">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </div>
+                <mat-action-list *ngFor="let book of povBooksOnCurrentPage" class="list-container">
+                    <a mat-list-item class="text-center" (click)="setSelectedBook(book)" routerLink="../book-details">
+                        {{book.name}}
+                    </a>
+                </mat-action-list>
+            </div>
+        </div>
+    </div>
+
+</div>

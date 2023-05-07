@@ -1,0 +1,90 @@
+<div *ngIf="book">
+    <div class="mat-headline-5">
+        {{book.name}}
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-list class="text-center">
+        <mat-list-item *ngIf="book.isbn">
+            <span matListItemTitle>ISBN</span>
+            <span matListItemLine>{{book.isbn}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="book.authors">
+            <span matListItemTitle>Authors</span>
+            <span matListItemLine *ngFor="let author of book.authors">
+                <span>{{author}}</span>
+            </span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="book.numberOfPages">
+            <span matListItemTitle>Number of Pages</span>
+            <span matListItemLine>{{book.numberOfPages}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="book.publisher">
+            <span matListItemTitle>Publisher</span>
+            <span matListItemLine>{{book.publisher}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="book.country">
+            <span matListItemTitle>Country</span>
+            <span matListItemLine>{{book.country}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="book.mediaType">
+            <span matListItemTitle>Media Type</span>
+            <span matListItemLine>{{book.mediaType}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="book.released">
+            <span matListItemTitle>Release Date</span>
+            <span matListItemLine>{{book.released.toString().split('T')[0]}}</span>
+        </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider>
+
+    <div class="lists-container">
+        <div *ngIf="book.characters">
+            <div class="mat-headline-6">
+                <button mat-mini-fab color="primary" (click)="getPreviousCharacterPage()"
+                    [disabled]="characterPage === 0">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+                <span class="title">Characters</span>
+                <button mat-mini-fab color="primary" (click)="getNextCharacterPage()"
+                    [disabled]="isLastPage(characterPage, charactersOnCurrentPage.length, book.characters.length)">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+            <mat-action-list *ngFor="let character of charactersOnCurrentPage" class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(character)"
+                    routerLink="../character-details">
+                    {{character.name}}
+                </a>
+            </mat-action-list>
+        </div>
+
+        <div *ngIf="book.povCharacters">
+            <div class="mat-headline-6">
+                <button mat-mini-fab color="primary" (click)="getPreviousPovCharacterPage()"
+                    [disabled]="povCharacterPage === 0">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+                <span class="title">POV Characters</span>
+                <button mat-mini-fab color="primary" (click)="getNextPovCharacterPage()"
+                    [disabled]="isLastPage(povCharacterPage, povCharactersOnCurrentPage.length, book.povCharacters.length)">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+            <mat-action-list *ngFor="let character of povCharactersOnCurrentPage" class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(character)"
+                    routerLink="../character-details">
+                    {{character.name}}
+                </a>
+            </mat-action-list>
+        </div>
+    </div>
+</div>

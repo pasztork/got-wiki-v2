@@ -1,0 +1,16 @@
+.mat-headline-5,
+.mat-headline-6 {
+    text-align: center;
+    margin: 1vh 0 1vh 0;
+    color: white;
+}
+
+mat-list-item {
+    margin-bottom: 1vh;
+}
+
+.lists-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

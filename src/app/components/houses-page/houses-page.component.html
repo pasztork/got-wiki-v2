@@ -1,0 +1,19 @@
+<div class="mat-headline-5">
+    <button mat-mini-fab color="primary" [disabled]="isFirstPage() || housesOnPreviousPage === housesOnCurrentPage"
+        (click)="getPreviousPage()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span class="title">Houses</span>
+    <button mat-mini-fab color="primary" [disabled]="isLastPage() || housesOnNextPage === housesOnCurrentPage"
+        (click)="getNextPage()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-action-list *ngFor="let house of housesOnCurrentPage">
+    <a mat-list-item class="text-center" (click)="setSelectedHouse(house)" routerLink="../house-details">
+        {{house.name || 'Anonymous'}}
+    </a>
+</mat-action-list>

@@ -1,0 +1,19 @@
+<div class="mat-headline-5">
+    <button mat-mini-fab color="primary"
+        [disabled]="isFirstPage() || charactersOnPreviousPage === charactersOnCurrentPage" (click)="getPreviousPage()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span class="title">Characters</span>
+    <button mat-mini-fab color="primary" [disabled]="isLastPage() || charactersOnNextPage === charactersOnCurrentPage"
+        (click)="getNextPage()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-action-list *ngFor="let character of charactersOnCurrentPage">
+    <a mat-list-item class="text-center" (click)="setSelectedCharacter(character)" routerLink="../character-details">
+        {{character.name || 'Anonymous'}}
+    </a>
+</mat-action-list>

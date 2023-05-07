@@ -1,0 +1,17 @@
+<div class="mat-headline-5">
+    <button mat-mini-fab color="primary" [disabled]="isFirstPage() || booksOnPreviousPage === booksOnCurrentPage"
+        (click)=" getPreviousPage()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span class="title">Books</span>
+    <button mat-mini-fab color="primary" [disabled]="isLastPage() || booksOnNextPage === booksOnCurrentPage"
+        (click)="getNextPage()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</div>
+<mat-divider></mat-divider>
+<mat-action-list *ngFor="let book of booksOnCurrentPage">
+    <a mat-list-item class="text-center" (click)="setSelectedBook(book)" routerLink="../book-details">
+        {{book.name}}
+    </a>
+</mat-action-list>

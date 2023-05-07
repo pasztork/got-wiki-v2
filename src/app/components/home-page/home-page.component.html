@@ -1,0 +1,18 @@
+<header>
+    <h1 class="mat-headline-3">
+        Welcome to GoT Wiki!
+    </h1>
+    <h2 class="mat-subtitle-1">
+        A place to explore Westeros
+    </h2>
+    <div>
+        <div class="button-container">
+            <a routerLink="/books" mat-raised-button class="flex-item">Books</a>
+            <a routerLink="/characters" mat-raised-button class="flex-item">Characters</a>
+            <a routerLink="/houses" mat-raised-button class="flex-item">Houses</a>
+        </div>
+        <div class="search-box">
+            <input matInput placeholder="Search by name" [(ngModel)]="searchTerm" (keyup.enter)="search()">
+        </div>
+    </div>
+</header>

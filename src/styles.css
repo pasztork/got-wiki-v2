@@ -1,0 +1,26 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #303030;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.title {
+    display: inline-block;
+    min-width: 12vw;
+    margin: 0 2vh 0 2vh;
+}
+
+.mat-headline-5,
+.mat-headline-6 {
+    text-align: center;
+    margin: 1vh 0 1vh 0;
+    color: white;
+}

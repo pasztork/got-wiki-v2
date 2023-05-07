@@ -1,0 +1,37 @@
+<div class="mat-headline-5">
+    <span class="title">Search results</span>
+</div>
+<div *ngIf="books[0]">
+    <mat-divider></mat-divider>
+    <div class="mat-headline-6">
+        <span class="title">Books</span>
+    </div>
+    <mat-action-list *ngFor="let book of books">
+        <a mat-list-item class="text-center" (click)="setSelectedBook(book)" routerLink="../book-details">
+            {{book.name}}
+        </a>
+    </mat-action-list>
+</div>
+<div *ngIf="characters[0]">
+    <mat-divider></mat-divider>
+    <div class="mat-headline-6">
+        <span class="title">Characters</span>
+    </div>
+    <mat-action-list *ngFor="let character of characters">
+        <a mat-list-item class="text-center" (click)="setSelectedCharacter(character)"
+            routerLink="../character-details">
+            {{character.name}}
+        </a>
+    </mat-action-list>
+</div>
+<div *ngIf="houses[0]">
+    <mat-divider></mat-divider>
+    <div class="mat-headline-6">
+        <span class="title">Houses</span>
+    </div>
+    <mat-action-list *ngFor="let house of houses">
+        <a mat-list-item class="text-center" (click)="setSelectedHouse(house)" routerLink="../house-details">
+            {{house.name}}
+        </a>
+    </mat-action-list>
+</div>

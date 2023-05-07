@@ -1,0 +1,134 @@
+<div *ngIf="house">
+    <div class="mat-headline-5">
+        {{house.name}}
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-list class="text-center">
+        <mat-list-item *ngIf="house.region">
+            <span matListItemTitle>Region</span>
+            <span matListItemLine>{{house.region}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="house.coatOfArms">
+            <span matListItemTitle>Coat of Arms</span>
+            <span matListItemLine style="word-wrap: break-word;">{{house.coatOfArms}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="house.words">
+            <span matListItemTitle>Words</span>
+            <span matListItemLine>{{house.words}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="house.titles[0]">
+            <span matListItemTitle>Titles</span>
+            <span matListItemLine *ngFor="let title of house.titles">
+                <span>{{title}}</span>
+            </span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="house.seats[0]">
+            <span matListItemTitle>Seats</span>
+            <span matListItemLine *ngFor="let seat of house.seats">
+                <span>{{seat}}</span>
+            </span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="house.founded">
+            <span matListItemTitle>Founded</span>
+            <span matListItemLine>{{house.founded}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="house.diedOut">
+            <span matListItemTitle>Died Out</span>
+            <span matListItemLine>{{house.diedOut}}</span>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="house.ancestralWeapons[0]">
+            <span matListItemTitle>Ancestral Weapons</span>
+            <span matListItemLine *ngFor="let weapon of house.ancestralWeapons">
+                <span>{{weapon}}</span>
+            </span>
+        </mat-list-item>
+    </mat-list>
+
+    <div *ngIf="currentLord || heir">
+        <mat-divider></mat-divider>
+
+        <div *ngIf="currentLord">
+            <div class=" mat-headline-6">
+                <span class="title">Current Lord</span>
+            </div>
+            <mat-action-list class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(currentLord)"
+                    routerLink="../house-details">
+                    {{currentLord.name}}
+                </a>
+            </mat-action-list>
+        </div>
+
+        <div *ngIf="heir">
+            <div class=" mat-headline-6">
+                <span class="title">Heir</span>
+            </div>
+            <mat-action-list class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(heir)" routerLink="../house-details">
+                    {{heir.name}}
+                </a>
+            </mat-action-list>
+        </div>
+    </div>
+
+    <div *ngIf="house.overlord || house.cadetBranches[0]">
+        <mat-divider></mat-divider>
+
+        <div *ngIf="overlord">
+            <div class=" mat-headline-6">
+                <span class="title">Overlord</span>
+            </div>
+            <mat-action-list class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedHouse(overlord)" routerLink="../house-details">
+                    {{overlord.name}}
+                </a>
+            </mat-action-list>
+        </div>
+
+        <div *ngIf="cadetBranches[0]">
+            <div class=" mat-headline-6">
+                <span class="title">Cadet Branches</span>
+            </div>
+            <mat-action-list *ngFor="let house of cadetBranches" class="list-container">
+                <a mat-list-item class="text-center" (click)="setSelectedHouse(house)" routerLink="../house-details">
+                    {{house.name}}
+                </a>
+            </mat-action-list>
+        </div>
+    </div>
+
+    <div *ngIf="house.swornMembers[0]">
+        <mat-divider></mat-divider>
+
+        <div class="lists-container">
+            <div *ngIf="charactersOnCurrentPage[0]">
+                <div class="mat-headline-6">
+                    <button mat-mini-fab color="primary" (click)="getPreviousCharacterPage()"
+                        [disabled]="characterPage === 0">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <span class="title">Sworn Members</span>
+                    <button mat-mini-fab color="primary" (click)="getNextCharacterPage()" [disabled]="isLastPage()">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </div>
+                <mat-action-list *ngFor="let character of charactersOnCurrentPage" class="list-container">
+                    <a mat-list-item class="text-center" (click)="setSelectedCharacter(character)"
+                        routerLink="../character-details">
+                        {{character.name || 'Anonymous'}}
+                    </a>
+                </mat-action-list>
+            </div>
+        </div>
+    </div>
+
+</div>
