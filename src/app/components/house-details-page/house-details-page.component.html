@@ -62,7 +62,7 @@
             </div>
             <mat-action-list class="list-container">
                 <a mat-list-item class="text-center" (click)="setSelectedCharacter(currentLord)"
-                    routerLink="../house-details">
+                    routerLink="../character-details">
                     {{currentLord.name}}
                 </a>
             </mat-action-list>
@@ -73,7 +73,8 @@
                 <span class="title">Heir</span>
             </div>
             <mat-action-list class="list-container">
-                <a mat-list-item class="text-center" (click)="setSelectedCharacter(heir)" routerLink="../house-details">
+                <a mat-list-item class="text-center" (click)="setSelectedCharacter(heir)"
+                    routerLink="../character-details">
                     {{heir.name}}
                 </a>
             </mat-action-list>
